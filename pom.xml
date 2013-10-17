@@ -4,28 +4,80 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>DBFReader</groupId>
-    <artifactId>DBFReader</artifactId>
+    <groupId>com.giannivanhoecke.dbfreader</groupId>
+    <artifactId>dbfreader</artifactId>
     <version>GIT-SNAPSHOT</version>
+    <inceptionYear>2013</inceptionYear>
+    <packaging>jar</packaging>
+
+    <organization>
+        <name>Lin.k N.V.</name>
+        <url>http://www.lin-k.net</url>
+    </organization>
+
+    <!-- CODE MANAGEMENT -->
+    <scm>
+        <tag>HEAD</tag>
+        <url>https://github.com/giannivh/DBFReader</url>
+        <connection>scm:git:ssh://github.com/giannivh/DBFReader</connection>
+        <developerConnection>scm:git:ssh://github.com/giannivh/DBFReader</developerConnection>
+    </scm>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>buildnumber-maven-plugin</artifactId>
-                <version>1.1</version>
+                <artifactId>maven-assembly-plugin</artifactId>
                 <executions>
                     <execution>
-                        <phase>validate</phase>
+                        <id>jar-with-dependencies</id>
+                        <phase>package</phase>
                         <goals>
-                            <goal>create</goal>
+                            <goal>single</goal>
                         </goals>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>com.giannivanhoecke.dbfreader.DBFReader</mainClass>
+                                </manifest>
+                            </archive>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                            <finalName>dbfreader-GIT-SNAPSHOT</finalName>
+                            <appendAssemblyId>false</appendAssemblyId>
+                        </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <doCheck>true</doCheck>
-                    <doUpdate>true</doUpdate>
+                    <source>1.5</source>
+                    <target>1.5</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.4.3</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/target</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/resources</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
