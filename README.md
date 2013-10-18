@@ -15,6 +15,14 @@ Requirements
 
 * Java 1.6+
 
+Download
+--------
+
+Latest version (v0.1):
+
+* [Executable Jar](http://giannivanhoecke.com/downloads/dbf-reader/dbf-reader-0.1.jar)
+* [Mac App](http://giannivanhoecke.com/downloads/dbf-reader/dbf-reader-0.1.dmg)
+
 Screen shots
 ------------
 
