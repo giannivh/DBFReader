@@ -79,6 +79,33 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>osxappbundle-maven-plugin</artifactId>
+                <version>1.0-alpha-2</version>
+                <configuration>
+                    <mainClass>com.giannivanhoecke.dbfreader.DBFReader</mainClass>
+                    <iconFile>src/main/resources/database.icns</iconFile>
+                    <jvmVersion>1.6+</jvmVersion>
+                    <javaApplicationStub>src/main/resources/JavaApplicationStub</javaApplicationStub>
+                    <additionalResources>
+                        <fileSet>
+                            <directory>${basedir}</directory>
+                            <includes>
+                                <include>LICENSE</include>
+                            </includes>
+                        </fileSet>
+                    </additionalResources>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>bundle</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
