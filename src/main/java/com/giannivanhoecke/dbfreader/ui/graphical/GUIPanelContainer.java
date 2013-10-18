@@ -58,7 +58,7 @@ public class GUIPanelContainer extends JFrame implements UI {
         this.setLayout( new BorderLayout( 0, 0 ) );
 
         //Toolbar
-        this.toolbarPanel = new ToolbarPanel();
+        this.toolbarPanel = new ToolbarPanel( this );
         add( this.toolbarPanel, BorderLayout.NORTH );
 
         //Status bar
@@ -118,12 +118,23 @@ public class GUIPanelContainer extends JFrame implements UI {
     @Override
     public void errorOccurred( final Exception e ) {
 
+        final Component component = this;
+
         SwingUtilities.invokeLater( new Runnable() {
 
             @Override
             public void run() {
 
-                JOptionPane.showMessageDialog( null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE );
+                try {
+
+                    JOptionPane.showMessageDialog( component, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE,
+                            new ImageIcon( ImageIO.read( getClass().getResource( "/database_64.png" ) ) ) );
+                }
+                catch( IOException e1 ) {
+
+                    //No icon
+                    JOptionPane.showMessageDialog( component, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE );
+                }
             }
         } );
     }
@@ -131,12 +142,23 @@ public class GUIPanelContainer extends JFrame implements UI {
     @Override
     public void showMessage( final String title, final String message ) {
 
+        final Component component = this;
+
         SwingUtilities.invokeLater( new Runnable() {
 
             @Override
             public void run() {
 
-                JOptionPane.showMessageDialog( null, message, title, JOptionPane.INFORMATION_MESSAGE );
+                try {
+
+                    JOptionPane.showMessageDialog( component, message, title, JOptionPane.INFORMATION_MESSAGE,
+                            new ImageIcon( ImageIO.read( getClass().getResource( "/database_64.png" ) ) ) );
+                }
+                catch( IOException e ) {
+
+                    //No icon
+                    JOptionPane.showMessageDialog( component, message, title, JOptionPane.INFORMATION_MESSAGE );
+                }
             }
         } );
     }

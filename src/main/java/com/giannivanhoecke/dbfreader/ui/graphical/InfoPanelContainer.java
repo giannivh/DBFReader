@@ -22,7 +22,9 @@ import java.text.SimpleDateFormat;
  */
 public class InfoPanelContainer extends JDialog {
 
-    public InfoPanelContainer() {
+    public InfoPanelContainer( Frame frame, boolean b ) {
+
+        super( frame, b );
 
         this.setTitle( "Table info" );
         this.setModal( true );
@@ -45,7 +47,7 @@ public class InfoPanelContainer extends JDialog {
         this.initLayout();
 
         this.pack();
-        this.setLocationRelativeTo( null );
+        this.setLocationRelativeTo( frame );
         this.setVisible( true );
     }
 

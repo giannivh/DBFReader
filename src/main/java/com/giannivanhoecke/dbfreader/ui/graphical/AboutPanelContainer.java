@@ -19,7 +19,9 @@ import java.io.IOException;
  */
 public class AboutPanelContainer extends JDialog {
 
-    public AboutPanelContainer() {
+    public AboutPanelContainer( Frame frame, boolean b ) {
+
+        super( frame, b );
 
         this.setTitle( "About" );
         this.setModal( true );
@@ -42,7 +44,7 @@ public class AboutPanelContainer extends JDialog {
         this.initLayout();
 
         this.pack();
-        this.setLocationRelativeTo( null );
+        this.setLocationRelativeTo( frame );
         this.setVisible( true );
     }
 

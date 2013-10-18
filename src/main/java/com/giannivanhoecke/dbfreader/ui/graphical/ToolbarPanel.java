@@ -25,6 +25,7 @@ import java.util.Date;
  */
 public class ToolbarPanel extends JPanel {
 
+    private JFrame parent;
     private JToolBar toolBar;
     private JButton openButton;
     private JButton backButton;
@@ -37,7 +38,9 @@ public class ToolbarPanel extends JPanel {
     private JButton aboutButton;
     private JButton exportButton;
 
-    public ToolbarPanel() {
+    public ToolbarPanel( JFrame parent ) {
+
+        this.parent = parent;
 
         this.initLayout();
     }
@@ -153,7 +156,7 @@ public class ToolbarPanel extends JPanel {
                         @Override
                         public void run() {
 
-                            new InfoPanelContainer();
+                            new InfoPanelContainer( parent, true ); //Owner, modal
                         }
                     } );
                 }
@@ -171,7 +174,7 @@ public class ToolbarPanel extends JPanel {
 
                 public void actionPerformed( ActionEvent event ) {
 
-                    String searchString = JOptionPane.showInputDialog( null, "Please enter a keyword:", "Search",
+                    String searchString = JOptionPane.showInputDialog( parent, "Please enter a keyword:", "Search",
                             JOptionPane.QUESTION_MESSAGE );
 
                     if( searchString != null && !searchString.trim().isEmpty() ) {
@@ -267,7 +270,7 @@ public class ToolbarPanel extends JPanel {
                         @Override
                         public void run() {
 
-                            new AboutPanelContainer();
+                            new AboutPanelContainer( parent, true ); //Owner, modal
                         }
                     } );
                 }
