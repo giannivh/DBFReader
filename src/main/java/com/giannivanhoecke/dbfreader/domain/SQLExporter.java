@@ -60,7 +60,7 @@ public class SQLExporter implements Runnable {
                     append( Utils.NEW_LINE );
             stringBuilder.append( "# " + Controller.TITLE ).
                     append( Utils.NEW_LINE );
-            stringBuilder.append( "# Version " + Controller.VERSION ).
+            stringBuilder.append( "# Version " ).append( Config.getApplicationVersion() ).
                     append( Utils.NEW_LINE );
             stringBuilder.append( "# By Gianni Van Hoecke <gianni.vh@gmail.com>" ).
                     append( Utils.NEW_LINE );

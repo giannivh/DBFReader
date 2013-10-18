@@ -4,6 +4,7 @@
 
 package com.giannivanhoecke.dbfreader.ui.graphical;
 
+import com.giannivanhoecke.dbfreader.domain.Config;
 import com.giannivanhoecke.dbfreader.domain.Constants;
 import com.giannivanhoecke.dbfreader.domain.Controller;
 
@@ -68,7 +69,7 @@ public class AboutPanelContainer extends JDialog {
         //Info
         JLabel infoLabel = new JLabel(
                 "<html>" +
-                    "<h3>" + Controller.TITLE + " v" + Controller.VERSION + "</h3>" +
+                    "<h3>" + Controller.TITLE + " v" + Config.getApplicationVersion() + "</h3>" +
                     "<p>By Gianni Van Hoecke &lt;gianni.vh@gmail.com&gt;</p><br />" +
                     "<p>This app uses:</p>" +
                     "<ul style=\"font-size: small; margin: 15px;\">" +
