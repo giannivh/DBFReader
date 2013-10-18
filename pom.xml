@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.giannivanhoecke.dbfreader</groupId>
-    <artifactId>dbfreader</artifactId>
+    <groupId>com.giannivanhoecke</groupId>
+    <artifactId>dbf-reader</artifactId>
     <version>GIT-SNAPSHOT</version>
     <inceptionYear>2013</inceptionYear>
     <packaging>jar</packaging>
@@ -43,7 +43,7 @@
                             <descriptorRefs>
                                 <descriptorRef>jar-with-dependencies</descriptorRef>
                             </descriptorRefs>
-                            <finalName>dbfreader-GIT-SNAPSHOT</finalName>
+                            <!--<finalName>${artifactId}-${version}</finalName>-->
                             <appendAssemblyId>false</appendAssemblyId>
                         </configuration>
                     </execution>
@@ -53,8 +53,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.5</source>
-                    <target>1.5</target>
+                    <source>1.6</source>
+                    <target>1.6</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -82,15 +82,25 @@
         </plugins>
     </build>
 
+    <repositories>
+        <repository>
+            <id>giannivanhoecke</id>
+            <url>http://maven2.giannivanhoecke.com/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <dependencies>
 
-        <!-- Not in maven repo -->
         <dependency>
             <groupId>nl.knaw.dans.common</groupId>
             <artifactId>dans-dbf-lib</artifactId>
             <version>1.0.0-beta-10</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/dans-dbf-lib-1.0.0-beta-10.jar</systemPath>
         </dependency>
 
     </dependencies>
