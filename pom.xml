@@ -11,7 +11,7 @@
         It reads dBASE databases and shows the content with an option to convert it to an SQL file.
         Written in Java.
     </description>
-    <version>0.1</version>
+    <version>GIT-SNAPSHOT</version>
     <inceptionYear>2013</inceptionYear>
     <packaging>jar</packaging>
 
