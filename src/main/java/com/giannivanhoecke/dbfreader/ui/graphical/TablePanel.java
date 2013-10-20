@@ -39,7 +39,7 @@ public class TablePanel extends JPanel {
 
         tableModel = new MyTableModel( new Vector(), new Vector() );
 
-        table = new JTable();
+        table = new MyTable();
         table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
         table.setDefaultRenderer( Object.class, new MyCellRenderer() );
         table.setModel( tableModel );
@@ -88,10 +88,10 @@ public class TablePanel extends JPanel {
             Component comp = renderer.getTableCellRendererComponent( table, col.getHeaderValue(), false, false, 0, 0 );
             int width = comp.getPreferredSize().width;
 
-            // Add margin
+            //Add margin
             width += 2 * margin;
 
-            // Set the width
+            //Set the width
             col.setPreferredWidth( width );
         }
     }
