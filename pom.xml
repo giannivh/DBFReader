@@ -4,13 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.giannivanhoecke</groupId>
-    <artifactId>dbf-reader</artifactId>
+    <name>DBF Reader</name>
     <description>
         An easy-to-use tool to show and convert the content of dBASE III, IV, and 5.0 files.
         It reads dBASE databases and shows the content with an option to convert it to an SQL file.
         Written in Java.
     </description>
+
+    <groupId>com.giannivanhoecke</groupId>
+    <artifactId>dbf-reader</artifactId>
     <version>GIT-SNAPSHOT</version>
     <inceptionYear>2013</inceptionYear>
     <packaging>jar</packaging>
