@@ -7,6 +7,7 @@ package com.giannivanhoecke.dbfreader.domain;
 import nl.knaw.dans.common.dbflib.*;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +28,7 @@ public class TableSearcher implements Runnable {
     @Override
     public void run() {
 
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss" );
         Table table = new Table( Controller.INSTANCE.getPath() );
 
         try {
@@ -86,7 +88,55 @@ public class TableSearcher implements Runnable {
                         }
                     }
 
-                    recordValues.add( rawValue == null ? "<NULL>" : new String( rawValue ).trim() );
+                    if( rawValue == null ) {
+
+                        recordValues.add( "" );
+                    }
+                    else {
+
+                        switch( field.getType() ) {
+
+                            case CHARACTER:
+                            case GENERAL:
+                            case BINARY:
+                            case MEMO:
+                            case PICTURE:
+                            case FLOAT:
+                            case NUMBER:
+                            default:
+
+                                recordValues.add( new String( rawValue ).trim() );
+
+                                break;
+
+                            case LOGICAL:
+
+                                if( record.getBooleanValue( field.getName() ) == null ) {
+
+                                    recordValues.add( "" );
+                                }
+                                else {
+
+                                    recordValues.add( String.format( "%s",
+                                            record.getBooleanValue( field.getName() ) ? "true" : "false" ) );
+                                }
+
+                                break;
+
+                            case DATE:
+
+                                if( record.getDateValue( field.getName() ) == null ) {
+
+                                    recordValues.add( "" );
+                                }
+                                else {
+
+                                    recordValues.add(
+                                            simpleDateFormat.format( record.getDateValue( field.getName() ) ) );
+                                }
+                                break;
+                        }
+                    }
                 }
 
                 if( hasHit ) {
