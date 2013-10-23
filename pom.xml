@@ -37,9 +37,9 @@
     <!-- CODE MANAGEMENT -->
     <scm>
         <tag>HEAD</tag>
-        <url>https://github.com/giannivh/DBFReader</url>
-        <connection>scm:git:ssh://github.com/giannivh/DBFReader</connection>
-        <developerConnection>scm:git:ssh://github.com/giannivh/DBFReader</developerConnection>
+        <url>https://git@github.com/giannivh/DBFReader</url>
+        <connection>scm:git:ssh://git@github.com/giannivh/DBFReader</connection>
+        <developerConnection>scm:git:ssh://git@github.com/giannivh/DBFReader</developerConnection>
     </scm>
 
     <build>
