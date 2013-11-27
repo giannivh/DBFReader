@@ -177,7 +177,7 @@ public class SQLExporter implements Runnable {
                     Field field = fields.get( i );
                     boolean hasNext = i + 1 < fields.size();
 
-                    if( new String( record.getRawValue( field ) ) == null ) {
+                    if( record.getRawValue( field ) == null ) {
 
                         value.append( "NULL" );
                     }
