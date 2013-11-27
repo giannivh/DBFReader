@@ -191,7 +191,7 @@ public class SQLExporter implements Runnable {
 
                                 value.append(
                                         String.format( "'%s'",
-                                                Utils.cleanString( record.getStringValue( field.getName() ) ) ) );
+                                                Utils.cleanString( record.getRawValue( field ) ) ) );
 
                                 break;
 

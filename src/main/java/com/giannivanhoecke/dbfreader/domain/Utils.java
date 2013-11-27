@@ -4,6 +4,8 @@
 
 package com.giannivanhoecke.dbfreader.domain;
 
+import java.nio.charset.CharacterCodingException;
+
 /**
  * User: gvhoecke <gianni.vanhoecke@lin-k.net>
  * Date: 16/10/13
@@ -30,6 +32,24 @@ public class Utils {
     public static String cleanFileName( String name ) {
 
         return name.substring( 0, name.lastIndexOf( "." ) ).replaceAll( "[^a-zA-Z0-9]", "" );
+    }
+
+    public static String cleanString( byte[] rawData ) {
+
+        //Make sure it's UTF-8 valid
+
+        String value;
+        try {
+
+            value = UTF8Util.utf8( rawData );
+        }
+        catch( CharacterCodingException e ) {
+
+            //Should not get here...
+            value = "";
+        }
+
+        return cleanString( value );
     }
 
     public static String cleanString( String string ) {
