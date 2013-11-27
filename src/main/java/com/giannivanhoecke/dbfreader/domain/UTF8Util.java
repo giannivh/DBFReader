@@ -9,6 +9,7 @@ package com.giannivanhoecke.dbfreader.domain;
 
 import java.nio.CharBuffer;
 import java.nio.charset.*;
+import java.text.Normalizer;
 
 /**
  * User: gvhoecke <gianni.vanhoecke@lin-k.net>
@@ -30,6 +31,10 @@ public class UTF8Util {
     public static String utf8( byte[] input )
             throws CharacterCodingException {
 
-        return decoder.decode( encoder.encode( CharBuffer.wrap( new String( input ) ) ) ).toString();
+        String value = new String( input );
+
+        value = Normalizer.normalize( value, Normalizer.Form.NFD ).replaceAll( "[^\\p{ASCII}]", "" );
+
+        return decoder.decode( encoder.encode( CharBuffer.wrap( value ) ) ).toString();
     }
 }
