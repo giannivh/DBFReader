@@ -137,24 +137,30 @@ public class SQLExporter implements Runnable {
             }
             stringBuilder.append( ") ENGINE=InnoDB DEFAULT CHARSET=utf8;" );
             stringBuilder.append( Utils.NEW_LINE ).append( Utils.NEW_LINE );
+            printWriter.println( stringBuilder.toString() );
+            stringBuilder = new StringBuilder();
 
             //Add insert statement
-            stringBuilder.append( String.format( "INSERT INTO `%s` (", tableName ) );
+            StringBuilder insertBuilder = new StringBuilder();
+            insertBuilder.append( String.format( "INSERT INTO `%s` (", tableName ) );
             for( int i = 0; i < fields.size(); i++ ) {
 
                 Field field = fields.get( i );
                 boolean hasNext = i + 1 < fields.size();
 
-                stringBuilder.append( String.format( "`%s`%s", field.getName(), hasNext ? ", " : ")" ) );
+                insertBuilder.append( String.format( "`%s`%s", field.getName(), hasNext ? ", " : ")" ) );
             }
-            stringBuilder.append( Utils.NEW_LINE );
-            stringBuilder.append( "VALUES" );
-
-            printWriter.println( stringBuilder.toString() );
+            insertBuilder.append( Utils.NEW_LINE );
+            insertBuilder.append( "VALUES" );
 
             //Add values
             int count;
             for( count = 0; count < table.getRecordCount(); count++ ) {
+
+                if( count == 0 || count % 100 == 0 ) {
+
+                    printWriter.println( insertBuilder.toString() );
+                }
 
                 Controller.INSTANCE.setStatusText( String.format( "Exporting dBASE %s to SQL... (%d/%d)",
                         table.getName(),
@@ -264,9 +270,16 @@ public class SQLExporter implements Runnable {
                     value.append( String.format( "%s", hasNext ? ", " : ")" ) );
                 }
 
-                value.append( String.format( "%s", count + 1 < table.getRecordCount() ? "," : ";" ) );
+                boolean isEndOfStatement = ( (count + 1) >= table.getRecordCount() ) ||
+                        ( (count + 1) % 100 == 0 );
+
+                value.append( String.format( "%s", isEndOfStatement ? ";" : "," ) );
 
                 printWriter.println( value.toString() );
+
+                if( isEndOfStatement )
+                    printWriter.println();
+
                 Controller.INSTANCE.setProgress( (int) Math.floor( ((double)count / recordCount) * 100.0 ) );
             }
 
