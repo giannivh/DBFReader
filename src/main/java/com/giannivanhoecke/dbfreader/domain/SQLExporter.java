@@ -100,7 +100,7 @@ public class SQLExporter implements Runnable {
                     case PICTURE:
 
                         stringBuilder.append(
-                                String.format( "  `%s` blob", field.getName() ) );
+                                String.format( "  `%s` blob DEFAULT NULL", field.getName() ) );
 
                         break;
 
@@ -121,14 +121,14 @@ public class SQLExporter implements Runnable {
                     case LOGICAL:
 
                         stringBuilder.append(
-                                String.format( "  `%s` bit(1) NOT NULL", field.getName() ) );
+                                String.format( "  `%s` bit(1) DEFAULT NULL", field.getName() ) );
 
                         break;
 
                     case NUMBER:
 
                         stringBuilder.append(
-                                String.format( "  `%s` bigint(20) unsigned NOT NULL", field.getName() ) );
+                                String.format( "  `%s` bigint(20) unsigned DEFAULT NULL", field.getName() ) );
 
                         break;
                 }
