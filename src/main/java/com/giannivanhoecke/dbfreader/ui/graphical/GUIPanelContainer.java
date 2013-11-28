@@ -70,6 +70,11 @@ public class GUIPanelContainer extends JFrame implements UI {
         add( this.tablePanel, BorderLayout.CENTER );
     }
 
+    public void postConstruct() {
+
+        Controller.INSTANCE.checkForUpdates( true );
+    }
+
     @Override
     public void setUIEnabled( final boolean enabled ) {
 

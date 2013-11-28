@@ -38,6 +38,7 @@ public class DBFReader {
 
                 GUIPanelContainer guiPanelContainer = new GUIPanelContainer();
                 Controller.INSTANCE.addObserver( guiPanelContainer );
+                guiPanelContainer.postConstruct();
             }
         } );
     }

@@ -35,6 +35,7 @@ public class ToolbarPanel extends JPanel {
     private JButton infoButton;
     private JButton searchButton;
     private JButton clearSearchButton;
+    private JButton checkForUpdatesButton;
     private JButton aboutButton;
     private JButton exportButton;
 
@@ -253,6 +254,28 @@ public class ToolbarPanel extends JPanel {
 
             //Separator
             toolBar.addSeparator();
+
+            //Check for updates button
+            checkForUpdatesButton = new JButton( "" );
+            checkForUpdatesButton.setToolTipText( "Check for updates" );
+            checkForUpdatesButton.setIcon(
+                    new ImageIcon(
+                            ImageIO.read( getClass().getResource( "/mono_icons/exchange32.png" ) ) ) );
+            toolBar.add( checkForUpdatesButton );
+            checkForUpdatesButton.addActionListener( new ActionListener() {
+
+                public void actionPerformed( ActionEvent event ) {
+
+                    SwingUtilities.invokeLater( new Runnable() {
+
+                        @Override
+                        public void run() {
+
+                            Controller.INSTANCE.checkForUpdates( false );
+                        }
+                    } );
+                }
+            } );
 
             //About button
             aboutButton = new JButton( "" );

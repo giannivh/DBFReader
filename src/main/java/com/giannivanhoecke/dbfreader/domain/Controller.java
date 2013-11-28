@@ -5,8 +5,12 @@
 package com.giannivanhoecke.dbfreader.domain;
 
 import com.giannivanhoecke.dbfreader.ui.UI;
+import com.giannivanhoecke.jupdatechecker.JUpdateChecker;
+import com.giannivanhoecke.jupdatechecker.domain.Version;
+import com.giannivanhoecke.jupdatechecker.exception.InvalidVersionException;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -131,6 +135,40 @@ public enum Controller implements UI {
 
         this.setSearching( false );
         this.loadFromOffset();
+    }
+
+    public void checkForUpdates( boolean silentOnNoUpdate ) {
+
+        Version currentVersion  = Config.getVersion();
+        String  newVersionURL   = "http://giannivanhoecke.com/dev/dbf_reader_version.txt";
+        String  releaseNotesURL = "http://giannivanhoecke.com/dev/dbf_reader_release_notes.html";
+        String  downloadPageURL = "https://github.com/giannivh/DBFReader/releases";
+        String  autoUpdaterURL  = "http://giannivanhoecke.com/dev/dbf_reader_file.txt";
+
+        JUpdateChecker jUpdateChecker =
+                new JUpdateChecker(
+                        TITLE,
+                        currentVersion,
+                        newVersionURL,
+                        releaseNotesURL,
+                        downloadPageURL,
+                        null,
+                        autoUpdaterURL
+                );
+
+        try {
+
+            //Show gui...
+            jUpdateChecker.checkForUpdates( silentOnNoUpdate );
+        }
+        catch( IOException e ) {
+
+            e.printStackTrace();
+        }
+        catch( InvalidVersionException e ) {
+
+            e.printStackTrace();
+        }
     }
 
     @Override
