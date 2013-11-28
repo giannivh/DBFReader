@@ -18,10 +18,15 @@ Requirements
 Download
 --------
 
-Latest version (v0.1):
+Latest version (v0.2 - 2013-11-28):
 
-* [Executable Jar](http://giannivanhoecke.com/downloads/dbf-reader/dbf-reader-0.1.jar)
-* [Mac App](http://giannivanhoecke.com/downloads/dbf-reader/dbf-reader-0.1.dmg)
+* [Executable Jar](https://github.com/giannivh/DBFReader/releases/download/v0.2/dbf-reader-0.2.jar)
+* [Mac App](https://github.com/giannivh/DBFReader/releases/download/v0.2/dbf-reader-0.2.dmg)
+
+Older versions:
+
+* [v0.1 Executable Jar](https://github.com/giannivh/DBFReader/releases/download/v0.1/dbf-reader-0.1.jar) (2013-10-18)
+* [v0.1 Mac App](https://github.com/giannivh/DBFReader/releases/download/v0.1/dbf-reader-0.1.dmg) (2013-10-18)
 
 Screen shots
 ------------
